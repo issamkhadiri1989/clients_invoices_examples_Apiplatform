@@ -1,0 +1,27 @@
+services:
+    # Search filter
+    client.search_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { fullName: 'partial', companyName: 'partial' } ]
+        tags: [ 'api_platform.filter' ]
+
+    # Order filter
+    client.order_filter:
+        parent: 'api_platform.doctrine.orm.order_filter'
+        arguments:
+            $properties: { id: ~, fullName: ~, companyName: ~ }
+            $orderParameterName: order
+        tags: [ 'api_platform.filter' ]
+
+    # Order invoices
+    invoice.order_filter:
+        parent: 'api_platform.doctrine.orm.order_filter'
+        arguments:
+            $properties: { totalAmountDue: ~ }
+            $orderParameterName: 'order'
+        tags: [ 'api_platform.filter' ]
+
+    invoice.status_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [{status: 'exact'}]
+        tags: ['api_platform.filter']

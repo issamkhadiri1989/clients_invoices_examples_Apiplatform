@@ -1,0 +1,827 @@
+{
+	"info": {
+		"_postman_id": "03ca380f-3173-458c-ba70-0c1bfe200c4e",
+		"name": "EHEI 2025 - Demo APIPLATFORM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6350037"
+	},
+	"item": [
+		{
+			"name": "Factures",
+			"item": [
+				{
+					"name": "Add new Invoice for an existing Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"string\",\r\n    \"dueDate\": \"date\",\r\n    \"client\": \"IRI\",\r\n    \"subTotal\": \"float\",\r\n    \"totalTax\": \"float\",\r\n    \"totalAmountDue\": \"float\",\r\n    \"invoiceDate\": \"date\",\r\n    \"status\": \"create | partially_paid | unpaid | paid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/invoices",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new Invoice for an existing Client",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"number\": \"INV-25070003\",\r\n    \"dueDate\": \"2025-06-30\",\r\n    \"client\": \"/api/clients/1\",\r\n    \"subTotal\": 1000,\r\n    \"totalTax\": 200,\r\n    \"totalAmountDue\": 1200,\r\n    \"invoiceDate\": \"2025-05-14\",\r\n    \"status\": \"created\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/invoices",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"invoices"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Show Invoice details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/invoices/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Invoice details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/invoices/1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"invoices",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Edit the invoice information",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"new status\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/invoices/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Invoice details",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/merge-patch+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"paid\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/invoices/1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"invoices",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get client from a given invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/invoices/{id}/client",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"{id}",
+								"client"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get client from a given invoice",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/invoices/1/client",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"invoices",
+										"1",
+										"client"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Remove the given invoice",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/invoices/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remove the given invoice",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/invoices/1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"invoices",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Liste des clients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/clients",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Liste des clients filtered",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients?companyName=Avis&_show=2",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "fullName",
+											"value": "Aliyah",
+											"disabled": true
+										},
+										{
+											"key": "companyName",
+											"value": "Avis"
+										},
+										{
+											"key": "_show",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "List of clients order with different properties",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients?order[id]=desc&order[companyName]=asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "order[id]",
+											"value": "desc"
+										},
+										{
+											"key": "order[companyName]",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Liste des clients",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients?_show=10&_page=1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "_show",
+											"value": "10"
+										},
+										{
+											"key": "_page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Show a client's Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/clients/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show a client's Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients/1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Add new Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"client full name\",\r\n    \"companyName\":\"the company name\",\r\n    \"officePhoneNumber\": \"office phone number\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/clients",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new Client",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Issam KHADIRI\",\r\n    \"companyName\": \"Ipsum lorem dolore\",\r\n    \"officePhoneNumber\": \"+212 672049753\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/clients",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete the given client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/clients/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete the given client",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients/51",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients",
+										"51"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Edit an existing Client",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"the new value of the full name\",\r\n    \"companyName\": \"the new value of the company name\",\r\n    \"officePhoneNumber\": \"the new value of the office phone number\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/clients/{id}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit an existing Client",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/merge-patch+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Gerardo Emmerich (Edited)\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/clients/1",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get list of invoices of the given client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/clients/{id}/invoices",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"{id}",
+								"invoices"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get list of invoices of the given client",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/clients/1/invoices?order[totalAmountDue]=desc&status=created",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"clients",
+										"1",
+										"invoices"
+									],
+									"query": [
+										{
+											"key": "order[totalAmountDue]",
+											"value": "desc"
+										},
+										{
+											"key": "status",
+											"value": "created"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "View My Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/users/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connect",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"const jwtToken = response.token;\r",
+							"pm.globals.set(\"jwt_token\", jwtToken);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"string\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/login",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Connect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"oreilly.willie\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		}
+	]
+}
